@@ -1,0 +1,239 @@
+# pii_generator_mapping.yaml
+#
+# Maps normalized PII categories to a synthetic data generator.
+# The 'sources' list contains all the specific regex pattern names
+# and NLP labels that correspond to that category.
+
+PERSON_NAME:
+  generator: 'generate_fake_name'
+  sources:
+    - 'person' # NLP label
+    - 'PERSON' # Common NLP label variant
+    - 'person name'
+
+ORGANIZATION:
+  generator: 'generate_fake_organization'
+  sources:
+    - 'company' # NLP label
+    - 'work' # NLP label
+
+CONTACT_EMAIL:
+  generator: 'generate_fake_email'
+  sources:
+    - 'email' # Regex pattern and NLP label
+
+CONTACT_PHONE:
+  generator: 'generate_fake_phone'
+  sources:
+    - 'phone number' # NLP label
+    - 'phone_india'
+    - 'phone_us'
+    - 'phone_canada'
+    - 'phone_uk'
+    - 'phone_china'
+    - 'phone_australia'
+    - 'phone_germany'
+    - 'phone_general_international'
+
+LOCATION_ADDRESS:
+  generator: 'generate_fake_address'
+  sources:
+    - 'address' # NLP label
+    - 'full address' # NLP label
+    - 'location' # NLP label
+
+POSTAL_CODE:
+  generator: 'generate_fake_based_on_regex'
+  sources:
+    - 'postal_code_us_zip'
+    - 'postal_code_uk_postcode'
+    - 'postal_code_india_pin'
+    - 'postal_code_canada_postal'
+    - 'postal_code_australia_postcode'
+    - 'postal_code_germany_postcode'
+    - 'postal_code_france_postcode'
+
+GOVT_ID_SSN:
+  generator: 'generate_fake_ssn'
+  sources:
+    - 'Social Security Number' # NLP label
+    - 'national_ids_us_ssn'
+
+GOVT_ID_NATIONAL:
+  generator: 'generate_fake_based_on_regex'
+  sources:
+    - 'national_ids_india_aadhaar'
+    - 'national_ids_india_pan'
+    - 'national_ids_uk_nino'
+    - 'national_ids_canada_sin'
+    - 'national_ids_australia_tfn'
+    - 'national_ids_china_resident_id'
+    - 'voter_id_india_regex'
+
+GOVT_ID_PASSPORT:
+  generator: 'generate_fake_based_on_regex'
+  sources:
+    - 'passport number' # NLP label
+    - 'national_ids_passport_generic_passport'
+    - 'national_ids_passport_india_passport' # Context implies a name
+    - 'national_ids_passport_us_passport'
+    - 'national_ids_passport_uk_passport'
+    - 'passport_mrz_regex'
+
+GOVT_ID_LICENSE:
+  generator: 'generate_fake_based_on_regex'
+  sources:
+    - 'driver licence' # NLP label
+    - 'driving_license_india_generic'
+    - 'driving_license_us_al'
+    - 'driving_license_us_ak'
+    - 'driving_license_us_az'
+    - 'driving_license_us_ar'
+    - 'driving_license_us_ca'
+    - 'driving_license_us_co'
+    - 'driving_license_us_ct'
+    - 'driving_license_us_de'
+    - 'driving_license_us_fl'
+    - 'driving_license_us_ga'
+    - 'driving_license_us_hi'
+    - 'driving_license_us_id'
+    - 'driving_license_us_il'
+    - 'driving_license_us_in'
+    - 'driving_license_us_ia'
+    - 'driving_license_us_ks'
+    - 'driving_license_us_ky'
+    - 'driving_license_us_la'
+    - 'driving_license_us_me'
+    - 'driving_license_us_md'
+    - 'driving_license_us_ma'
+    - 'driving_license_us_mi'
+    - 'driving_license_us_mn'
+    - 'driving_license_us_ms'
+    - 'driving_license_us_mo'
+    - 'driving_license_us_mt'
+    - 'driving_license_us_ne'
+    - 'driving_license_us_nv'
+    - 'driving_license_us_nh'
+    - 'driving_license_us_nj'
+    - 'driving_license_us_nm'
+    - 'driving_license_us_ny'
+    - 'driving_license_us_nc'
+    - 'driving_license_us_nd'
+    - 'driving_license_us_oh'
+    - 'driving_license_us_ok'
+    - 'driving_license_us_or'
+    - 'driving_license_us_pa'
+    - 'driving_license_us_ri'
+    - 'driving_license_us_sc'
+    - 'driving_license_us_sd'
+    - 'driving_license_us_tn'
+    - 'driving_license_us_tx'
+    - 'driving_license_us_ut'
+    - 'driving_license_us_vt'
+    - 'driving_license_us_va'
+    - 'driving_license_us_wa'
+    - 'driving_license_us_wv'
+    - 'driving_license_us_wi'
+    - 'driving_license_us_wy'
+    - 'driving_license_us_dc'
+    - 'driving_license_canada_ontario'
+    - 'driving_license_canada_quebec'
+    - 'driving_license_uk'
+
+UNIQUE_IDENTIFIER:
+  generator: 'generate_fake_based_on_regex'
+  sources:
+    - 'booking number' # NLP label
+    - 'personally identifiable information' # Generic PII NLP label
+    - 'license_plate_india_generic'
+    - 'license_plate_us_generic'
+    - 'license_plate_us_california'
+    - 'license_plate_us_new_york'
+    - 'license_plate_us_texas'
+    - 'license_plate_canada_generic'
+    - 'license_plate_uk'
+    - 'license_plate_germany'
+    - 'license_plate_australia'
+    - 'bank_account_routing_aba_us'
+    - 'bank_account_iban_generic'
+    - 'bank_account_ifsc_india'
+    - 'bank_account_micr_india'
+    - 'bank_account_swift_bic'
+    - 'imei_regex'
+    - 'uuid_regex'
+    - 'medical_icd10_code'
+    - 'medical_nhs_number'
+    - 'medical_medicare_us'
+    - 'medical_insurance_policy_generic'
+    - 'vehicle_vin_regex'
+
+CREDENTIALS_FINANCIAL:
+  generator: 'generate_fake_based_on_regex'
+  sources:
+    - 'credit_card_visa'
+    - 'credit_card_mastercard'
+    - 'credit_card_amex'
+    - 'credit_card_discover'
+    - 'credit_card_generic'
+    - 'payment_tokens_bitcoin_address'
+    - 'payment_tokens_ethereum_address'
+    - 'payment_tokens_stripe_token'
+
+CREDENTIALS_API_TOKEN:
+  generator: 'generate_fake_based_on_regex'
+  sources:
+    - 'api_keys_generic_alphanumeric'
+    - 'api_keys_google_api'
+    - 'api_keys_aws_access_key_id'
+    - 'api_keys_aws_secret_access_key'
+    - 'api_keys_slack_token'
+    - 'api_keys_stripe_secret_key'
+    - 'api_keys_stripe_publishable_key'
+    - 'jwt_token'
+    - 'oauth_token'
+    - 'github_token'
+    - 'gitlab_token'
+    - 'npm_token'
+    - 'terraform_cloud_token'
+    - 'docker_hub_token'
+
+CREDENTIALS_URI:
+  generator: 'generate_fake_based_on_regex'
+  sources:
+    - 'db_credentials_mongo_uri'
+    - 'db_credentials_redis_uri'
+    - 'slack_webhook_url'
+
+CREDENTIALS_KEY:
+  generator: 'generate_fake_based_on_regex'
+  sources:
+    - 'crypto_keys_ssh_public_key'
+    - 'crypto_keys_rsa_private_key'
+    - 'crypto_keys_ssh_private_key'
+    - 'aws_secrets_manager_arn'
+    - 'gcp_private_key_id'
+    - 'gcp_client_email'
+    - 'azure_client_secret'
+    - 'azure_storage_account_key'
+    - 'env_var_secrets_regex'
+
+# Generic categories for data that is not explicitly PII but may be sensitive, for these patterns keep the original value and ignore generation
+DATETIME_AND_NUMERIC_SENSITIVE:
+  generator: 'generate_keep_original'
+  sources:
+    - 'date_iso'
+    - 'date_mmddyyyy'
+    - 'dob_generic'
+    - 'common_data_formats_time_hh_mm_ss_24h'
+    - 'common_data_formats_time_hh_mm_12h'
+    - 'common_data_formats_time_iso8601_datetime'
+    - 'common_data_formats_file_size'
+    - 'common_data_formats_scientific_notation'
+
+NETWORK:
+  generator: 'generate_fake_based_on_regex'
+  sources:
+    - 'ip_ipv4'
+    - 'ip_ipv6'
+    - 'mac_address_regex'
+

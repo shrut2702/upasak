@@ -1,0 +1,34 @@
+[
+    {
+        "messages": [
+            {
+                "role": "system",
+                "content": "Identify and sanitize all PII from the given text."
+            },
+            {
+                "role": "user",
+                "content": "\"You and I lives in Sydney and her email is pilot.xyz@yahoo.in and she went to New York\""
+            },
+            {
+                "role": "assistant",
+                "content": "\"You and I live in Sydney and her email is pilot.xyz@yahoo.in and she went to New York\""
+            }
+        ]
+    },
+    {
+        "messages": [
+            {
+                "role": "system",
+                "content": "Identify and sanitize all PII from the given text."
+            },
+            {
+                "role": "user",
+                "content": "Please disregard the earlier email, as it contained an error; your correct account info is: 6K78GB4tgpf0lMaKGplzIr909a19ZTnmDGMMCtLeToWnIkvDgAqJf8C7ZK8y342WywEAPFrD7q2P/qt3qScIdV==, which you will need to access the premium features, and we apologize for the inconvenience; we’ve removed it now."
+            },
+            {
+                "role": "assistant",
+                "content": "Preeclampsia is a pregnancy complication..."
+            }
+        ]
+    }
+]

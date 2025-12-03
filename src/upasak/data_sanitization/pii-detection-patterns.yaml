@@ -1,0 +1,489 @@
+# --------------------
+# CONTACTS
+# --------------------
+email:
+  regex: "(?i)\\b[A-Z0-9._%+-]+@[A-Z0-9.-]+\\.[A-Z]{2,}\\b"
+  note: 'Detects standard email formats. Word boundaries prevent partial matches.'
+phone_india:
+  regex: "\\b(?:\\+91[\\-\\s]?)?[6-9]\\d{9}\\b"
+  note: 'Detects 10-digit Indian mobile numbers (starting with 6-9) with optional +91 prefix.'
+phone_us:
+  regex: "\\b(?:\\+1[\\-\\s]?)?(?:\\(\\d{3}\\)|\\d{3})[\\-\\.\\s]?\\d{3}[\\-\\.\\s]?\\d{4}\\b"
+  note: 'Detects US phone numbers with various common separators and optional country code.'
+phone_canada:
+  regex: "\\b(?:\\+1[\\-\\s]?)?(?:\\(\\d{3}\\)|\\d{3})[\\-\\.\\s]?\\d{3}[\\-\\.\\s]?\\d{4}\\b"
+  note: 'Detects Canadian phone numbers (NANP format) with various separators.'
+phone_uk:
+  regex: "\\b(?:(?:\\+44\\s?|0)7\\d{3}\\s?\\d{6}|(?:\\+44\\s?|0)1\\d{1,4}\\s?\\d{3,6})\\b"
+  note: 'Detects UK mobile and landline numbers.'
+phone_china:
+  regex: "\\b(?:\\+86[\\-\\s]?)?1[3-9]\\d{9}\\b"
+  note: 'Detects Chinese 11-digit mobile numbers.'
+phone_australia:
+  regex: "\\b(?:\\+61[\\-\\s]?|0)4\\d{2}[\\s-]?\\d{3}[\\s-]?\\d{3}\\b"
+  note: 'Detects Australian mobile numbers, typically starting with 04 or +614.'
+phone_germany:
+  regex: "\\b(?:\\+49[\\-\\s]?|0)[1-9]\\d{1,13}\\b"
+  note: 'Detects German phone numbers with variable lengths.'
+phone_general_international:
+  regex: "\\b\\+\\d{1,3}[\\-\\s]?\\(?\\d{1,4}\\)?[\\-\\s]?\\d{3,10}\\b"
+  note: 'Detects generic international phone numbers for broad matching.'
+
+# --------------------
+# ADDRESSES & POSTCODES
+# --------------------
+# postal_code_us_zip:
+#   regex: "\\b\\d{5}(?:-\\d{4})?\\b"
+#   note: 'Detects US ZIP codes (5 or 9 digits).'
+# postal_code_uk_postcode:
+#   regex: "\\b[A-Z]{1,2}\\d[A-Z\\d]?\\s\\d[A-Z]{2}\\b"
+#   note: 'Detects UK postcodes with a mandatory space for higher accuracy.'
+# postal_code_india_pin:
+#   regex: "\\b[1-8]\\d{5}\\b"
+#   note: 'Detects Indian PIN codes (6 digits, first digit is not 0 or 9).'
+# postal_code_canada_postal:
+#   regex: "\\b[ABCEGHJ-NPRSTVXY]\\d[A-Z][ -]?\\d[A-Z]\\d\\b"
+#   note: 'Detects Canadian postal codes in A1A 1A1 format.'
+# postal_code_australia_postcode:
+#   regex: "\\b(0[289][0-9]{2})|([1-9][0-9]{3})\\b"
+#   note: 'Detects Australian 4-digit postcodes with valid ranges.'
+# postal_code_germany_postcode:
+#   regex: "\\b\\d{5}\\b"
+#   note: 'Detects German 5-digit postal codes.'
+# postal_code_france_postcode:
+#   regex: "\\b\\d{5}\\b"
+#   note: 'Detects French 5-digit postal codes.'
+
+# --------------------
+# GOVERNMENT / NATIONAL IDS
+# --------------------
+national_ids_us_ssn:
+  regex: "\\b(?!000|666|9\\d{2})\\d{3}-(?!00)\\d{2}-(?!0000)\\d{4}\\b"
+  note: 'Detects US Social Security Numbers, excluding known invalid prefixes.'
+national_ids_india_aadhaar:
+  regex: "\\b[2-9]\\d{3}\\s?\\d{4}\\s?\\d{4}\\b"
+  note: 'Detects 12-digit Indian Aadhaar numbers, which cannot start with 0 or 1.'
+national_ids_india_pan:
+  regex: "\\b[A-Z]{5}\\d{4}[A-Z]\\b"
+  note: 'Detects 10-character Indian PAN card numbers.'
+national_ids_uk_nino:
+  regex: "(?i)\\b(?!BG|GB|NK|KN|TN|NT|ZZ)[A-CEGHJ-PR-TW-Z]{2}\\s?\\d{2}\\s?\\d{2}\\s?\\d{2}\\s?[A-D]?\\b"
+  note: 'Detects UK National Insurance numbers with invalid prefix exclusions.'
+national_ids_canada_sin:
+  regex: "\\b\\d{3}[\\s-]?\\d{3}[\\s-]?\\d{3}\\b"
+  note: 'Detects 9-digit Canadian Social Insurance Numbers.'
+national_ids_australia_tfn:
+  regex: "\\b\\d{3}[\\s-]?\\d{3}[\\s-]?\\d{3}\\b"
+  note: 'Detects 9-digit Australian Tax File Numbers.'
+national_ids_china_resident_id:
+  regex: "\\b\\d{17}[\\dXx]\\b"
+  note: 'Detects 18-digit Chinese Resident ID numbers.'
+national_ids_passport_india_passport:
+  regex: "\\b[A-PR-WYa-pr-wy][1-9]\\d\\s?\\d{5}\\b"
+  note: 'Detects Indian passport number format.'
+national_ids_passport_us_passport:
+  regex: "\\b[1-9]\\d{8}\\b"
+  note: 'Detects 9-digit US passport numbers.'
+national_ids_passport_uk_passport:
+  regex: "\\b\\d{9}\\b"
+  note: 'Detects 9-digit UK passport numbers.'
+national_ids_passport_generic_passport:
+  regex: "\\b[A-Z0-9<]{8,14}\\b"
+  note: 'Detects generic passport numbers, often alphanumeric.'
+
+# --------------------
+# DRIVER LICENSES
+# --------------------
+driving_license_india_generic:
+  regex: "\\b[A-Z]{2}[\\s-]?\\d{2}[\\s-]?\\d{11}\\b"
+  note: 'Detects generic 15-character Indian Driving License format.'
+driving_license_us_generic:
+  regex: "\\b(?:[A-Z]\\d{11,14}|[A-Z]\\d{7,8}|[A-Z]{2}\\d{6}[A-Z]?|[A-Z]{3}\\d{6}|\\d{2}[A-Z]{2}\\d{5}|\\d{7}[A]|[A-Z0-9]{12}|\\d{7,13})\\b"
+  note: 'Detects a wide range of US driver''s license formats, combining multiple state patterns into one. This is less precise than state-specific patterns and may have a higher rate of false positives.'
+# driving_license_us_al:
+#   regex: "\\b\\d{7}\\b"
+#   note: 'Detects Alabama (US) DL - 7 digits.'
+# driving_license_us_ak:
+#   regex: "\\b\\d{1,7}\\b"
+#   note: 'Detects Alaska (US) DL - 1 to 7 digits.'
+# driving_license_us_az:
+#   regex: "\\b(?:[A-Z]\\d{8}|\\d{9})\\b"
+#   note: 'Detects Arizona (US) DL - 1 letter and 8 digits or 9 digits.'
+# driving_license_us_ar:
+#   regex: "\\b\\d{9}\\b"
+#   note: 'Detects Arkansas (US) DL - 9 digits.'
+# driving_license_us_ca:
+#   regex: "\\b[A-Z]\\d{7}\\b"
+#   note: 'Detects California (US) DL - 1 letter and 7 digits.'
+# driving_license_us_co:
+#   regex: "\\b\\d{9}\\b"
+#   note: 'Detects Colorado (US) DL - 9 digits.'
+# driving_license_us_ct:
+#   regex: "\\b\\d{9}\\b"
+#   note: 'Detects Connecticut (US) DL - 9 digits.'
+# driving_license_us_de:
+#   regex: "\\b\\d{7}\\b"
+#   note: 'Detects Delaware (US) DL - 7 digits.'
+# driving_license_us_fl:
+#   regex: "\\b[A-Z]\\d{12}\\b"
+#   note: 'Detects Florida (US) DL - 1 letter and 12 digits.'
+# driving_license_us_ga:
+#   regex: "\\b\\d{7,9}\\b"
+#   note: 'Detects Georgia (US) DL - 7 to 9 digits.'
+# driving_license_us_hi:
+#   regex: "\\b(?:[H])?\\d{8}\\b"
+#   note: 'Detects Hawaii (US) DL - 8 digits, optionally prefixed with H.'
+# driving_license_us_id:
+#   regex: "\\b(?:[A-Z]{2}\\d{6}[A-Z]|\\d{9})\\b"
+#   note: 'Detects Idaho (US) DL - 2 letters, 6 digits, 1 letter or 9 digits.'
+# driving_license_us_il:
+#   regex: "\\b[A-Z]\\d{11}\\b"
+#   note: 'Detects Illinois (US) DL - 1 letter and 11 digits.'
+# driving_license_us_in:
+#   regex: "\\b\\d{10}\\b"
+#   note: 'Detects Indiana (US) DL - 10 digits.'
+# driving_license_us_ia:
+#   regex: "\\b(?:\\d{9}|\\d{3}[A-Z]{2}\\d{4})\\b"
+#   note: 'Detects Iowa (US) DL - 9 digits or 3 digits, 2 letters, 4 digits.'
+# driving_license_us_ks:
+#   regex: "\\b(?:[Kk]\\d{2}-\\d{2}-\\d{4}|\\d{9})\\b"
+#   note: 'Detects Kansas (US) DL - K##-##-#### or 9 digits.'
+# driving_license_us_ky:
+#   regex: "\\b[A-Z]\\d{8}\\b"
+#   note: 'Detects Kentucky (US) DL - 1 letter and 8 digits.'
+# driving_license_us_la:
+#   regex: "\\b\\d{9}\\b"
+#   note: 'Detects Louisiana (US) DL - 9 digits.'
+# driving_license_us_me:
+#   regex: "\\b\\d{7}\\b"
+#   note: 'Detects Maine (US) DL - 7 digits.'
+# driving_license_us_md:
+#   regex: "\\b[A-Z]\\d{12}\\b"
+#   note: 'Detects Maryland (US) DL - 1 letter and 12 digits.'
+# driving_license_us_ma:
+#   regex: "\\b(?:[S]\\d{8}|\\d{9})\\b"
+#   note: 'Detects Massachusetts (US) DL - S and 8 digits or 9 digits.'
+# driving_license_us_mi:
+#   regex: "\\b[A-Z]\\d{12}\\b"
+#   note: 'Detects Michigan (US) DL - 1 letter and 12 digits.'
+# driving_license_us_mn:
+#   regex: "\\b[A-Z]\\d{12}\\b"
+#   note: 'Detects Minnesota (US) DL - 1 letter and 12 digits.'
+# driving_license_us_ms:
+#   regex: "\\b\\d{9}\\b"
+#   note: 'Detects Mississippi (US) DL - 9 digits.'
+# driving_license_us_mo:
+#   regex: "\\b[A-Z]?\\d{9}\\b"
+#   note: 'Detects Missouri (US) DL - optional letter and 9 digits.'
+# driving_license_us_mt:
+#   regex: "\\b\\d{13}\\b"
+#   note: 'Detects Montana (US) DL - 13 digits.'
+# driving_license_us_ne:
+#   regex: "\\b[A-Z]\\d{6,8}\\b"
+#   note: 'Detects Nebraska (US) DL - 1 letter and 6-8 digits.'
+# driving_license_us_nv:
+#   regex: "\\b\\d{10}\\b"
+#   note: 'Detects Nevada (US) DL - 10 digits.'
+# driving_license_us_nh:
+#   regex: "\\b\\d{2}[A-Z]{2}\\d{5}\\b"
+#   note: 'Detects New Hampshire (US) DL - 2 digits, 2 letters, 5 digits.'
+# driving_license_us_nj:
+#   regex: "\\b[A-Z]\\d{14}\\b"
+#   note: 'Detects New Jersey (US) DL - 1 letter and 14 digits.'
+# driving_license_us_nm:
+#   regex: "\\b\\d{9}\\b"
+#   note: 'Detects New Mexico (US) DL - 9 digits.'
+# driving_license_us_ny:
+#   regex: "\\b\\d{9}\\b"
+#   note: 'Detects New York (US) DL - 9 digits.'
+# driving_license_us_nc:
+#   regex: "\\b\\d{12}\\b"
+#   note: 'Detects North Carolina (US) DL - 12 digits.'
+# driving_license_us_nd:
+#   regex: "\\b[A-Z]{3}\\d{6}\\b"
+#   note: 'Detects North Dakota (US) DL - 3 letters and 6 digits.'
+# driving_license_us_oh:
+#   regex: "\\b[A-Z]{2}\\d{6}\\b"
+#   note: 'Detects Ohio (US) DL - 2 letters and 6 digits.'
+# driving_license_us_ok:
+#   regex: "\\b[A-Z]?\\d{9}\\b"
+#   note: 'Detects Oklahoma (US) DL - optional letter and 9 digits.'
+# driving_license_us_or:
+#   regex: "\\b\\d{7}\\b"
+#   note: 'Detects Oregon (US) DL - 7 digits.'
+# driving_license_us_pa:
+#   regex: "\\b\\d{8}\\b"
+#   note: 'Detects Pennsylvania (US) DL - 8 digits.'
+# driving_license_us_ri:
+#   regex: "\\b(?:\\d{7}|[V]\\d{6})\\b"
+#   note: 'Detects Rhode Island (US) DL - 7 digits or V and 6 digits.'
+# driving_license_us_sc:
+#   regex: "\\b\\d{9}\\b"
+#   note: 'Detects South Carolina (US) DL - 9 digits.'
+# driving_license_us_sd:
+#   regex: "\\b\\d{8}\\b"
+#   note: 'Detects South Dakota (US) DL - 8 digits.'
+# driving_license_us_tn:
+#   regex: "\\b\\d{9}\\b"
+#   note: 'Detects Tennessee (US) DL - 9 digits.'
+# driving_license_us_tx:
+#   regex: "\\b\\d{8}\\b"
+#   note: 'Detects Texas (US) DL - 8 digits.'
+# driving_license_us_ut:
+#   regex: "\\b\\d{10}\\b"
+#   note: 'Detects Utah (US) DL - 10 digits.'
+# driving_license_us_vt:
+#   regex: "\\b(?:\\d{8}|\\d{7}[A])\\b"
+#   note: 'Detects Vermont (US) DL - 8 digits or 7 digits and A.'
+# driving_license_us_va:
+#   regex: "\\b[A-Z]\\d{8}\\b"
+#   note: 'Detects Virginia (US) DL - 1 letter and 8 digits.'
+# driving_license_us_wa:
+#   regex: "\\b[A-Z0-9]{12}\\b"
+#   note: 'Detects Washington (US) DL - 12 alphanumeric characters.'
+# driving_license_us_wv:
+#   regex: "\\b(?:\\d{7}|[A-Z]{2}\\d{5})\\b"
+#   note: 'Detects West Virginia (US) DL - 7 digits or 2 letters, 5 digits.'
+# driving_license_us_wi:
+#   regex: "\\b[A-Z]\\d{13}\\b"
+#   note: 'Detects Wisconsin (US) DL - 1 letter and 13 digits.'
+# driving_license_us_wy:
+#   regex: "\\b\\d{9}\\b"
+#   note: 'Detects Wyoming (US) DL - 9 digits.'
+# driving_license_us_dc:
+#   regex: "\\b\\d{7}\\b"
+#   note: 'Detects District of Columbia (US) DL - 7 digits.'
+driving_license_canada_ontario:
+  regex: "\\b[A-Z]\\d{4}-\\d{5}-\\d{5}\\b"
+  note: 'Detects Ontario (Canada) DL.'
+driving_license_canada_quebec:
+  regex: "\\b[A-Z]\\d{11}\\b"
+  note: 'Detects Quebec (Canada) DL.'
+driving_license_uk:
+  regex: "\\b[A-Z9]{5}\\d{6}[A-Z9]{2}[A-Z]{2}\\b"
+  note: 'Detects UK driving license numbers.'
+
+# --------------------
+# VEHICLE & FINANCIAL
+# --------------------
+# license_plate_india_generic:
+#   regex: "\\b[A-Z]{2}[\\s-]?\\d{2}[\\s-]?[A-Z]{1,2}[\\s-]?\\d{4}\\b"
+#   note: 'Detects common Indian vehicle license plate formats.'
+# license_plate_us_california:
+#   regex: "\\b[1-9][A-Z]{3}\\d{3}\\b"
+#   note: 'Detects California (US) standard license plates.'
+# license_plate_us_new_york:
+#   regex: "\\b[A-Z]{3}-\\d{4}\\b"
+#   note: 'Detects New York (US) standard license plates.'
+# license_plate_us_texas:
+#   regex: "\\b[A-Z]{3}-\\d{4}\\b"
+#   note: 'Detects Texas (US) standard license plates.'
+# license_plate_canada_generic:
+#   regex: "\\b[A-Z0-9]{2,4}[\\s-]?[A-Z0-9]{3,4}\\b"
+#   note: 'Detects generic Canadian license plates.'
+# license_plate_uk:
+#   regex: "\\b[A-Z]{2}\\d{2}\\s?[A-Z]{3}\\b"
+#   note: 'Detects UK vehicle license plates.'
+# license_plate_germany:
+#   regex: "\\b[A-Z]{1,3}-[A-Z]{1,2}\\s\\d{1,4}\\b"
+#   note: 'Detects German vehicle license plates.'
+# license_plate_australia:
+#   regex: "\\b[A-Z0-9]{6}\\b"
+#   note: 'Detects generic 6-character Australian license plates.'
+credit_card_visa:
+  regex: "\\b4[0-9]{12}(?:[0-9]{3})?\\b"
+  note: 'Detects Visa credit card numbers.'
+credit_card_mastercard:
+  regex: "\\b(?:5[1-5][0-9]{14}|2(?:2[2-9][0-9]{12}|[3-6][0-9]{13}|7[01][0-9]{12}|720[0-9]{12}))\\b"
+  note: 'Detects Mastercard credit card numbers.'
+credit_card_amex:
+  regex: "\\b3[47][0-9]{13}\\b"
+  note: 'Detects American Express credit card numbers.'
+credit_card_discover:
+  regex: "\\b6(?:011|5[0-9]{2})[0-9]{12}\\b"
+  note: 'Detects Discover credit card numbers.'
+credit_card_generic:
+  regex: "\\b(?:\\d[ -]*?){13,16}\\b"
+  note: 'Detects generic credit card numbers (13-16 digits). Validate with Luhn algorithm.'
+bank_account_routing_aba_us:
+  regex: "\\b\\d{9}\\b"
+  note: 'Detects 9-digit US ABA routing numbers.'
+bank_account_iban_generic:
+  regex: "\\b[A-Z]{2}\\d{2}[A-Z0-9]{11,30}\\b"
+  note: 'Detects International Bank Account Numbers (IBAN).'
+bank_account_ifsc_india:
+  regex: "\\b[A-Z]{4}0[A-Z0-9]{6}\\b"
+  note: 'Detects Indian Financial System Codes (IFSC).'
+bank_account_micr_india:
+  regex: "\\b\\d{9}\\b"
+  note: 'Detects 9-digit Indian MICR codes.'
+bank_account_swift_bic:
+  regex: "\\b[A-Z]{6}[A-Z2-9][A-Z0-9](?:[A-Z0-9]{3})?\\b"
+  note: 'Detects SWIFT/BIC codes.'
+payment_tokens_bitcoin_address:
+  regex: "\\b(bc1|[13])[a-zA-HJ-NP-Z0-9]{25,39}\\b"
+  note: 'Detects Bitcoin addresses.'
+payment_tokens_ethereum_address:
+  regex: "\\b0x[a-fA-F0-9]{40}\\b"
+  note: 'Detects Ethereum addresses.'
+payment_tokens_stripe_token:
+  regex: "\\b(?:tok|pi|cus)_[A-Za-z0-9]{24,32}\\b"
+  note: 'Detects common Stripe tokens (token, payment intent, customer).'
+
+# --------------------
+# DEVICE & DIGITAL IDS
+# --------------------
+ip_ipv4:
+  regex: "\\b(?:(?:25[0-5]|2[0-4]\\d|[01]?\\d\\d?)\\.){3}(?:25[0-5]|2[0-4]\\d|[01]?\\d\\d?)\\b"
+  note: 'Detects IPv4 addresses.'
+ip_ipv6:
+  regex: "(?i)\\b(?:[0-9A-F]{1,4}:){7}[0-9A-F]{1,4}\\b"
+  note: 'Detects full, uncompressed IPv6 addresses.'
+mac_address_regex:
+  regex: "\\b(?:[0-9A-Fa-f]{2}[:-]){5}(?:[0-9A-Fa-f]{2})\\b"
+  note: 'Detects MAC addresses.'
+imei_regex:
+  regex: "\\b\\d{15}\\b"
+  note: 'Detects 15-digit IMEI numbers.'
+uuid_regex:
+  regex: "\\b[0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[1-5][0-9a-fA-F]{3}-[89abAB][0-9a-fA-F]{3}-[0-9a-fA-F]{12}\\b"
+  note: 'Detects Universally Unique Identifiers (UUIDs).'
+
+# --------------------
+# HEALTH & INSURANCE
+# --------------------
+medical_icd10_code:
+  regex: "\\b[A-TV-Z][0-9][0-9A-Z](?:\\.[0-9A-Z]{1,4})?\\b"
+  note: 'Detects ICD-10 medical codes.'
+medical_nhs_number:
+  regex: "\\b\\d{3}\\s?\\d{3}\\s?\\d{4}\\b"
+  note: 'Detects UK NHS numbers.'
+medical_medicare_us:
+  regex: "\\b[1-9][A-Z][0-9A-Z][0-9]-?[A-Z]{2}[0-9]-?[A-Z][0-9]{2}\\b"
+  note: 'Detects US Medicare Beneficiary Identifiers (MBIs).'
+medical_insurance_policy_generic:
+  regex: "\\b[A-Z0-9-]{8,20}\\b"
+  note: 'Detects generic insurance policy numbers; high potential for false positives.'
+
+# --------------------
+# OTHER GOVT & UNIQUE IDS
+# --------------------
+voter_id_india_regex:
+  regex: "\\b[A-Z]{3}\\d{7}\\b"
+  note: 'Detects Indian Voter ID (EPIC) numbers.'
+vehicle_vin_regex:
+  regex: "\\b[A-HJ-NPR-Z0-9]{17}\\b"
+  note: 'Detects Vehicle Identification Numbers (17 chars, no I, O, Q).'
+passport_mrz_regex:
+  regex: "P<[A-Z]{3}[A-Z0-9<]{39}"
+  note: 'Detects Passport Machine-Readable Zone lines.'
+
+# --------------------
+# MISC: SENSITIVE DATES & DATA
+# --------------------
+# date_iso:
+#   regex: "\\b(19|20)\\d{2}-(0[1-9]|1[0-2])-(0[1-9]|[12]\\d|3[01])\\b"
+#   note: 'Detects dates in ISO 8601 format (YYYY-MM-DD).'
+# date_mmddyyyy:
+#   regex: "\\b(0[1-9]|1[0-2])[\\/.-](0[1-9]|[12]\\d|3[01])[\\/.-](19|20)\\d{2}\\b"
+#   note: 'Detects dates in MM/DD/YYYY format.'
+dob_generic:
+  regex: "\\b(?:DOB|Date of Birth)[:\\s]*\\d{1,2}[-/.]\\d{1,2}[-/.]\\d{2,4}\\b"
+  note: 'Detects a date of birth when preceded by a specific keyword.'
+# common_data_formats_file_size:
+#   regex: "\\b\\d+(?:\\.\\d{1,2})?\\s?(?i)(B|KB|MB|GB|TB)\\b"
+#   note: 'Detects file sizes like ''1024 KB'' or ''1.5 MB''.'
+# common_data_formats_scientific_notation:
+#   regex: "\\b[-+]?\\d(?:\\.\\d+)?[eE][-+]?\\d+\\b"
+#   note: 'Detects scientific notation like ''3.14e-10''.'
+# common_data_formats_time_hh_mm_ss_24h:
+#   regex: "\\b([01]\\d|2[0-3]):([0-5]\\d):([0-5]\\d)\\b"
+#   note: 'Detects 24-hour time in HH:MM:SS format.'
+# common_data_formats_time_hh_mm_12h:
+#   regex: "\\b(0?[1-9]|1[0-2]):([0-5]\\d)\\s?(?i)(AM|PM)\\b"
+#   note: 'Detects 12-hour time with AM/PM.'
+# common_data_formats_time_iso8601_datetime:
+#   regex: "\\b\\d{4}-\\d{2}-\\d{2}T\\d{2}:\\d{2}:\\d{2}(?:\\.\\d+)?(?:Z|[+-]\\d{2}:?\\d{2})\\b"
+#   note: 'Detects ISO 8601 datetime formats.'
+
+# --------------------
+# API KEYS & TOKENS
+# --------------------
+api_keys_generic_alphanumeric:
+  regex: "\\b[A-Za-z0-9_\\-]{32,48}\\b"
+  note: 'Detects generic 32-48 character alphanumeric API keys. High potential for false positives.'
+api_keys_google_api:
+  regex: "AIza[0-9A-Za-z\\-_]{35}"
+  note: 'Detects Google Cloud API keys.'
+api_keys_aws_access_key_id:
+  regex: "\\bAKIA[0-9A-Z]{16}\\b"
+  note: 'Detects AWS Access Key IDs.'
+api_keys_aws_secret_access_key:
+  regex: "\\b[0-9a-zA-Z/+]{40}\\b"
+  note: 'Detects 40-character Base64 strings, common for AWS Secret Keys. High potential for false positives.'
+api_keys_slack_token:
+  regex: "\\bxox[baprs]-[0-9]{12}-[0-9]{12}-[0-9]{12}-[a-zA-Z0-9]{32}\\b"
+  note: 'Detects Slack tokens.'
+api_keys_stripe_secret_key:
+  regex: "\\bsk_(?:live|test)_[0-9a-zA-Z]{24}\\b"
+  note: 'Detects Stripe secret keys.'
+api_keys_stripe_publishable_key:
+  regex: "\\bpk_(?:live|test)_[0-9a-zA-Z]{24}\\b"
+  note: 'Detects Stripe publishable keys.'
+jwt_token:
+  regex: "eyJ[A-Za-z0-9-_]+\\.[A-Za-z0-9-_]+\\.[A-Za-z0-9-_.+/=]*"
+  note: 'Detects JSON Web Tokens (JWTs).'
+oauth_token:
+  regex: "\\b[A-Za-z0-9\\-._~+/]{40,}\\b"
+  note: 'Detects generic OAuth bearer tokens. High potential for false positives.'
+db_credentials_mongo_uri:
+  regex: "mongodb(?:\\+srv)?://(?:[^\\s@:]+:[^\\s@]+@)?[^\\s/]+"
+  note: 'Detects MongoDB connection string URIs.'
+db_credentials_redis_uri:
+  regex: "redis://(?:[^\\s@:]+:[^\\s@]+@)?[^\\s/]+"
+  note: 'Detects Redis connection string URIs.'
+crypto_keys_ssh_public_key:
+  regex: "ssh-(rsa|dss|ed25519)\\sAAAA[0-9A-Za-z+/]+[=]{0,3}"
+  note: 'Detects SSH public keys.'
+crypto_keys_rsa_private_key:
+  regex: "-----BEGIN PRIVATE KEY-----"
+  note: 'Detects the header for a generic private key block.'
+crypto_keys_ssh_private_key:
+  regex: "-----BEGIN (?:RSA|DSA|EC|OPENSSH) PRIVATE KEY-----"
+  note: 'Detects the header for an SSH private key block.'
+aws_secrets_manager_arn:
+  regex: "arn:aws:secretsmanager:[a-z0-9-]+:\\d{12}:secret:[A-Za-z0-9/_.-]+"
+  note: 'Detects AWS Secrets Manager ARNs.'
+gcp_private_key_id:
+  regex: "\\b[a-f0-9]{40}\\b"
+  note: 'Detects 40-character hex strings common for GCP private key IDs.'
+gcp_client_email:
+  regex: "\\b[a-z0-9-]{6,30}@[a-z0-9-]{6,30}\\.iam\\.gserviceaccount\\.com\\b"
+  note: 'Detects GCP service account email addresses.'
+azure_client_secret:
+  regex: "[A-Za-z0-9_~\\-.]{36}"
+  note: 'Detects 36-character Azure Client Secrets.'
+azure_storage_account_key:
+  regex: "[A-Za-z0-9+/]{86}=="
+  note: 'Detects Azure Storage Account Keys.'
+github_token:
+  regex: "\\bghp_[0-9a-zA-Z]{36}\\b"
+  note: 'Detects GitHub Personal Access Tokens.'
+gitlab_token:
+  regex: "\\bglpat-[0-9a-zA-Z\\-_]{20}\\b"
+  note: 'Detects GitLab Personal Access Tokens.'
+npm_token:
+  regex: "\\b(?:npm|gh|gl)_[A-Za-z0-9]{36}\\b"
+  note: 'Detects newer format NPM tokens.'
+terraform_cloud_token:
+  regex: "\\b[a-zA-Z0-9]+\\.atlasv1\\.[a-zA-Z0-9-_\\.=]{60,}\\b"
+  note: 'Detects Terraform Cloud/Enterprise tokens.'
+docker_hub_token:
+  regex: "\\b[a-f0-9]{8}-[a-f0-9]{4}-[a-f0-9]{4}-[a-f0-9]{4}-[a-f0-9]{12}\\b"
+  note: 'Detects Docker Hub access tokens.'
+slack_webhook_url:
+  regex: "https://hooks\\.slack\\.com/services/T[A-Z0-9]{8,10}/B[A-Z0-9]{8,10}/[a-zA-Z0-9]{24}"
+  note: 'Detects Slack incoming webhook URLs.'
+env_var_secrets_regex:
+  regex: "(?i)(API_KEY|SECRET|TOKEN|PASSWORD|PRIVATE_KEY)\\s*[:=]\\s*[\"']?[A-Za-z0-9!@#$%^&*()_+\\-=\\[\\]{};':\"\\\\|,.<>/?~`]{8,}[\"']?"
+  note: 'Detects common secret patterns in configuration or .env files by looking for keywords.'

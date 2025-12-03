@@ -1,0 +1,60 @@
+[build-system]
+requires = ["setuptools>=61.0", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "upasak"
+version = "0.1.0"
+description = "UI-based Fine-Tuning Framework for Large Language Models (LLMs)"
+readme = "README.md"
+license = {file = "LICENSE"}
+
+authors = [
+    {name = "Shrut Dalwadi", email = "shroot2702hd@gmail.com"},
+    {name = "Raj Simpi", email = "rajsimpi04032002@gmail.com"}
+]
+
+requires-python = ">=3.10"
+
+keywords = [
+    "LLM",
+    "fine-tuning",
+    "transformers",
+    "streamlit",
+    "PII-sanitization",
+    "data-governance",
+    "machine-learning",
+    "upasak",
+    "ai",
+    "nlp"
+]
+
+dependencies = [
+    "accelerate==1.11.0",
+    "datasets==4.2.0",
+    "transformers==4.51.0",
+    "torch==2.9.0",
+    "peft==0.15.2",
+    "streamlit==1.51.0",
+    "rstr==3.2.2",
+    "gliner==0.2.22",
+    "Faker==37.8.0",
+    "exrex==0.12.0",
+    "logger==1.4",
+    "comet-ml==3.54.1",
+    "wandb==0.23.0",
+    "matplotlib==3.10.7"
+]
+
+[project.urls]
+Homepage = "https://github.com/shrut2702/upasak"
+Repository = "https://github.com/shrut2702/upasak"
+Issues = "https://github.com/shrut2702/upasak/issues"
+
+[tool.setuptools]
+package-dir = {"" = "src"}
+include-package-data = true
+package-data = { "upasak" = ["**/*.yaml", "**/*.json", "**/*.png"] }
+
+[tool.setuptools.packages.find]
+where = ["src"]
