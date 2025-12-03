@@ -7,7 +7,7 @@ It provides an intuitive Streamlit-based interface, multi-format dataset support
 Whether you're prototyping, researching, or running internal fine-tuning workflows, Upasak makes the process simple, accessible, and compliant.
 
 <p align="center">
-  <img src="assets/upasak_logo.png" width="400" />
+  <img src="https://raw.githubusercontent.com/shrut2702/upasak/refs/heads/main/assets/upasak_logo.png" width="400" />
 </p>
 
 ## **✨ Key Features**
@@ -71,7 +71,7 @@ Two sanitization modes:
 ## **🖥️ Streamlit UI – No-Code Training Workflow**
 
 <p align="center">
-  <img src="assets/Screenshot-UI.png" width="900" />
+  <img src="https://raw.githubusercontent.com/shrut2702/upasak/refs/heads/main/assets/Screenshot-UI.png" width="900" />
 </p>
 
 The visual interface provides fully interactive control:
