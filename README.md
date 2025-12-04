@@ -2,15 +2,24 @@
 
 # Upasak - UI-based Fine-Tuning for Large Language Models (LLMs)
 
-**Upasak** is a flexible, privacy-aware, no-code/low-code framework for fine-tuning large language models, built around [Hugging Face Transformers](https://huggingface.co/docs/transformers/en/index).
-It provides an intuitive Streamlit-based interface, multi-format dataset support, built-in PII and sensitive information sanitization, and a fully customizable training pipeline.
-Whether you're prototyping, researching, or running internal fine-tuning workflows, Upasak makes the process simple, accessible, and compliant.
+**Upasak** is a flexible, mindful to privacy, no-code/low-code framework for fine-tuning large language models, built around [Hugging Face Transformers](https://huggingface.co/docs/transformers/en/index).
+It features an easy-to-use Streamlit-based interface, multi-format dataset support, built-in PII and sensitive information sanitization, and a customizable training process.
+ Whether you're experimenting, researching, or performing internal fine-tuning tasks, Upasak makes it easily accessible and compliant.
+
+<p align="center">
+  <a href="https://pypi.org/project/upasak/">
+    <img src="https://img.shields.io/pypi/v/upasak" alt="PyPI Version">
+  </a>
+  <a href="https://github.com/shrut2702/upasak/blob/main/LICENSE">
+    <img src="https://img.shields.io/github/license/shrut2702/upasak" alt="License">
+  </a>
+</p>
 
 <p align="center">
   <img src="https://raw.githubusercontent.com/shrut2702/upasak/refs/heads/main/assets/upasak_logo.png" width="400" />
 </p>
 
-## **✨ Key Features**
+## **Key Features**
 
 ### **LLM Fine-Tuning**
 * Developed on top of Hugging Face's Transformers library.
@@ -45,17 +54,24 @@ Supported schemas:
 | **QLA**             | `[{"question":"...", "long_answer":"..."}]` or `question`, `long_answer` columns                      | Long-form generation                        |
 
 ### **Built-In PII & Sensitive Information Sanitization**
+
+Upasak ensures privacy compliance by:
+
+* Automatically detecting and redacting/masking PII
+* Using placeholder tokens to preserve dataset utility
+* Offering AI-assisted detection with manual review loops, which uses [GLiNER](https://huggingface.co/urchade/gliner_multi_pii-v1) (Named Entity Recognition) model.
+* Logging sanitization results for auditability
+
 Upasak automatically detects and redacts:
 * Personal names
 * Emails / phone numbers
 * IP addresses, IMEI
 * Credit card / bank details
-* National IDs (Aadhaar, PAN, Voter ID, etc.)
+* National IDs (Aadhaar, PAN, Voter ID)
 * API keys
 * GitHub/GitLab tokens
 * Database credentials
 * Residential & workplace addresses
-* And more…
 
 Two sanitization modes:
 
@@ -68,7 +84,7 @@ Two sanitization modes:
    * Preview sanitized sample before training
 ---
 
-## **🖥️ Streamlit UI – No-Code Training Workflow**
+## **Streamlit UI – No-Code Training Workflow**
 
 <p align="center">
   <img src="https://raw.githubusercontent.com/shrut2702/upasak/refs/heads/main/assets/Screenshot-UI.png" width="900" />
@@ -164,7 +180,8 @@ python inference.py
 
 ---
 
-# **📦 Installation**
+
+# **Installation**
 
 ### **Install from PyPI (recommended)**
 
@@ -198,7 +215,8 @@ pip install -r requirements.txt
 
 ---
 
-## **🚀 Usage**
+
+## **Usage**
 
 Upasak is used as a Python-triggered Streamlit app.
 
@@ -242,128 +260,42 @@ or
 streamlit run app.py --server.maxUploadSize=1024 # for configuring upload file size limit in MB
 ```
 
----
-
-# **📁 Repository Structure**
-
-```
-research/
-    can_be_used.ipynb
-    dirs-pii.ipynb
-    tokenization_wrapper.ipynb
-
-src/Upasak/
-    __init__.py
-    data_sanitization/
-        __init__.py
-        pii-detection-patterns.yaml
-        pii-generator-mapping.yaml
-        pii.py
-    fine_tune/
-        __init__.py
-        trainer_config.py
-        training_engine.py
-    preprocessing/
-        __init__.py
-        tokenizer_wrapper.py
-    ui/
-        __init__.py
-        interface.py
-    utils/
-        __init__.py
-        common.py
-
-app.py
-README.md
-requirements.txt
-.gitignore
-```
-
----
-
-Here’s a clean **add-on paragraph** you can place right after the main introduction *without altering* any of your existing content.
-(You can drop it anywhere — ideally after the first section or before “Key Features.”)
-
----
 
 ### **Reusability of Upasak Modules**
+
 
 Although Upasak provides a full end-to-end UI, **every internal component is designed to be reusable in isolation**.
 You can import and use modules such as:
 
-* `TokenizerWrapper` → standalone tokenization
+* `TokenizerWrapper` → standalone tokenization 
 * `TrainingEngine` + `TrainerConfig` → run full or LoRA fine-tuning programmatically
 * `PIISanitizer` → rule-based or hybrid PII detection/sanitization
+
+You can refer to [examples](https://github.com/shrut2702/upasak/tree/f4252b2e2072aad9e878005108abc564d8b670a0/examples) to more details.
 
 This allows you to integrate Upasak **directly into custom pipelines**, backend services, notebooks, or data-processing workflows — **without launching the Streamlit UI**.
 
 ---
 
+# **Use Cases**
 
-
-# **🔒 PII & Sensitive Information Handling**
-
-Upasak ensures privacy compliance by:
-
-* Automatically detecting and redacting/masking PII
-* Using placeholder tokens to preserve dataset utility
-* Offering AI-assisted detection with manual review loops, which uses [GLiNER](https://huggingface.co/urchade/gliner_multi_pii-v1) (Named Entity Recognition) model.
-* Logging sanitization results for auditability
-
-PII categories include:
-
-* Personal identifiers
-* Contact information
-* Financial identifiers
-* API credentials
-* Device IDs
-* Addresses (residential, office)
-* Tokens, keys, connection strings
-* IP, MAC, IMEI … and more
-
----
-
-# **🧩 Use Cases**
-
-* Privacy-safe LLM fine-tuning
 * Educational fine-tuning demonstrations 
-* Rapid prototyping for research teams
+* Rapid prototyping in quick-shipping environments
 * Dataset preparation and anonymization workflows
 * Internal LLM finetuning on sensitive or regulated data
+* Developers with no domain expertise who wants LLM in their application
+
 
 ---
 
-# **📍 Roadmap**
-
-The following enhancements are actively planned:
-
-### **Model Support**
-
-* Gemma-3 multimodal models
-* LLaMA / Mixtral / Phi / Qwen
-* **QLoRA** for efficient training on quantized weights
-* **DPO** (Direct Preference Optimization) for preference alignment
-
-### **Data Processing**
-
-* Profanity detection and handling
-* Additional schema support
-* Multimodal (image + text) tokenization
-
-### **UI Enhancements**
-
-* More detailed training logs
-
----
-
-# **🤝 Contributing**
+# **Contributing**
 
 Contributions are welcome!
 Please open an issue or submit a pull request for bug fixes, features, documentation, or dataset schema support.
 
 ---
 
-# **💬 Support**
+# **Support**
 
 For issues, questions, or feature requests:
 Create a GitHub issue in this repository.

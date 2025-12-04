@@ -4,7 +4,7 @@ build-backend = "setuptools.build_meta"
 
 [project]
 name = "upasak"
-version = "0.1.0"
+version = "0.1.1"
 description = "UI-based Fine-Tuning Framework for Large Language Models (LLMs)"
 readme = "README.md"
 license = {file = "LICENSE"}
